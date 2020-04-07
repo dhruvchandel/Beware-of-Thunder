@@ -48,7 +48,7 @@ cloud = pygame.transform.scale(cloud, scale_factor_cloud )
 enemy_count = 15
 max_enemy = 15
 rain_drop_pos = []
-drop_rate = 10
+drop_rate = 0.1*res[1]
 
 
 for _ in range(0, max_enemy) :
