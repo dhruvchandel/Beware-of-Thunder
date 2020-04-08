@@ -6,10 +6,14 @@ from random import randint
 
 pygame.init()
 
+# Creatin a max score file if not already there
+f = open("max_score.txt")
+f.close()
 
 # Adding Music to the game
 pygame.mixer.music.load('groovyhiphop.mp3')
 pygame.mixer.music.play(-1)
+
 # Resolution of the screen
 res = pyautogui.size()
 res= (res[0], res[1])
@@ -48,7 +52,7 @@ cloud = pygame.transform.scale(cloud, scale_factor_cloud )
 enemy_count = 15
 max_enemy = 15
 rain_drop_pos = []
-drop_rate = 0.1*res[1]
+drop_rate = 0.01*res[1]
 
 
 for _ in range(0, max_enemy) :
@@ -69,9 +73,9 @@ def DrawEnemy(z) :
 def DrawClouds(z) :
 	screen.blit(cloud, cloud_pos[z])
 
-def IncreaseDifficulty() :
-	global drop_rate
-	drop_rate += 5
+# def IncreaseDifficulty() :
+# 	global drop_rate
+# 	drop_rate += 5
 
 Game_Score = 0
 
@@ -139,7 +143,13 @@ while not game_over:
 		textpos = [res[0]/5, res[1]/3]
 		screen.blit(text, textpos)
 		pygame.display.update()
-
-
+		# Updating the High Score
+		f = open("max_score.txt","r+")
+		temp = f.read()
+		f.close()
+		if int(temp)<Game_Score :
+			f = open("max_score.txt","w+")
+			f.write((str(Game_Score)))
+			f.close()
 
 time.sleep(3)
