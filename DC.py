@@ -7,8 +7,13 @@ from random import randint
 pygame.init()
 
 # Creatin a max score file if not already there
-f = open("max_score.txt")
-f.close()
+try :
+	f = open("max_score.txt")
+	f.close()
+except :
+	f = open("max_score.txt", "w+")
+	f.write(str(0))
+	f.close()
 
 # Adding Music to the game
 pygame.mixer.music.load('groovyhiphop.mp3')
